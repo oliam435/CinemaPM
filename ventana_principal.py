@@ -77,7 +77,7 @@ class VentanaPrincipal(QWidget):
         self.layout_sala.addWidget(boton_sala3)
 
         self.layout_principal.addLayout(self.layout_sala)
-        # seleccionar hora de funcion con horas crear botones, interaccion al clikear
+
         
     def al_hacer_click_sala(self, sala_seleccionada):
         self.sala_seleccionada = sala_seleccionada
@@ -99,7 +99,6 @@ class VentanaPrincipal(QWidget):
         self.layout_horario.addWidget(boton_horario3)
 
         self.layout_principal.addLayout(self.layout_horario)
-        #para marcar los tics de los asientos seleccionados
     def al_hacer_click_horario(self, horario_seleccionado):
         self.horario_seleccionado = horario_seleccionado
         self.limpiar_layout(self.layout_horario)
@@ -112,7 +111,7 @@ class VentanaPrincipal(QWidget):
                     'B1', 'B2', 'B3', 'B4', 'B5',
                     'C1', 'C2', 'C3', 'C4', 'C5',
                     'D1', 'D2', 'D3', 'D4', 'D3',
-                    'F1', 'F2', 'F3', 'F4', 'F5']       #para organizar las filas y columnas de los asientos
+                    'F1', 'F2', 'F3', 'F4', 'F5']      
         fila = 0
         columna = 0
         for asiento in asientos:
@@ -129,17 +128,14 @@ class VentanaPrincipal(QWidget):
         self.layout_asientos.addWidget(boton_aceptar)
 
         self.layout_principal.addLayout(self.layout_asientos)
-        #tic marcado o no
+
     def verificar_disponibilidad(self, sala, horario, asientos_solicitados):
-        # Verificar disponibilidad de asientos
         for asiento in asientos_solicitados:
             fila, columna = self.obtener_fila_columna(asiento)
             if self.asientos_disponibles[sala][horario][fila][columna] == 1:
-                return False  # El asiento está ocupado
-        return True  # Todos los asientos solicitados están disponibles
-
+                return False 
+        return True 
     def obtener_fila_columna(self, asiento):
-        # Convertir el identificador del asiento a fila y columna en la matriz
         fila = ord(asiento[0]) - ord('A')
         columna = int(asiento[1]) - 1
         return fila, columna
@@ -153,8 +149,6 @@ class VentanaPrincipal(QWidget):
         elif estado == 0:
             self.asientos_seleccionados.remove(asiento)
             cont = cont - 1
-
-        #aceptar los asientos seleccionados
     def al_hacer_click_aceptar(self, cont):
         cont = 1
         self.total_compra = cont * 3000
